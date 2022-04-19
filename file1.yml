@@ -1,0 +1,20 @@
+root user:-
+ package  installed - httpd
+
+# cat /root/playbook1.yml
+---
+- hosts: all
+  tasks:
+   - name: Install httpd
+     package: name=httpd state=latest
+     become: yes
+
+ package  remove - httpd
+
+# cat playbook2.yml
+---
+- hosts: all
+  tasks:
+   - name: Install httpd
+     package: name=httpd state=absent
+     become: yes

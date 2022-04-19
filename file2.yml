@@ -1,0 +1,23 @@
+ansible user
+
+$ cat playbook3.yml
+---
+- hosts: all
+  remote_user: ansible
+  become: yes
+  become_user: root
+  tasks:
+   - name: Install httpd
+     package: name=httpd state=latest
+
+
+$ cat playbook4.yml
+---
+- hosts: all
+  remote_user: ansible
+  become: yes
+  become_user: root
+  tasks:
+   - name: remove httpd
+     package: name=httpd state=absent
+

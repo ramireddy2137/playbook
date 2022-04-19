@@ -1,0 +1,17 @@
+root user:-
+
+[root@vara-sys37 ~]# cat ospatch_13042022.sh
+ echo "13042022 patch bundle applied successfully" > /root/ospatch-status
+
+[root@vara-sys37 ~]# cat patching.yml
+---
+- hosts: all
+  tasks:
+   - name: copy the patch script
+     copy: src="ospatch_13042022.sh" dest="/tmp/script1.sh"
+   - name: set permissions
+     file: path=/tmp/script1.sh owner=root group=root mode=0755
+   - name: execute the script
+     shell: /bin/bash /tmp/script1.sh
+   - name: reboot the host
+     command: /sbin/reboot
